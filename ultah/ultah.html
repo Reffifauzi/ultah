@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            /* Menambahkan padding untuk memberikan ruang di sisi */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url() no-repeat center center;
+            background-size: cover;
+            image-rendering: crisp-edges;
+            /* Untuk menjaga kejelasan gambar */
+            color: #fff;
+            text-align: center;
+            box-sizing: border-box;
+            /* Menghindari padding memengaruhi ukuran elemen */
+        }
+
+        .container {
+    max-width: 600px;
+    padding: 20px;
+    background: rgba(245, 222, 179, 0.7); /* Warna krem dengan transparansi */
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    margin: 0 auto;
+    margin-bottom: 50px; /* Menambahkan margin bawah */
+    color: black; /* Warna teks agar tetap terbaca */
+}
+
+
+        #page2 {
+            background: transparent;
+            /* Membuat background container kedua tembus pandang */
+        }
+
+        .visible {
+            opacity: 1;
+            transform: scale(1);
+            color: black;
+            
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            background-color: transparent;
+            /* Latar belakang transparan */
+            color: black;
+            /* Warna teks */
+            padding: 10px 20px;
+            /* Memberikan ruang untuk teks */
+            font-size: 16px;
+            /* Ukuran teks */
+            border: none;
+            /* Tidak ada border */
+            border-radius: 0;
+            /* Menghilangkan radius */
+            cursor: pointer;
+            /* Pointer untuk menunjukkan tombol */
+            transition: color 0.3s;
+            /* Efek transisi warna saat hover */
+            margin: 10px;
+            text-decoration: underline;
+            /* Tambahkan garis bawah agar terlihat seperti tautan */
+        }
+
+        button:hover {
+            color: #ffcc00;
+            /* Mengubah warna teks saat hover */
+        }
+
+        img {
+            max-width: 75%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            margin-top: 250px;
+            border: 3px solid #fff; /* Border putih */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Bayangan halus */
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: fall 5s linear infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="birthdaySong" src="Jamrud-SelamatUlangTahunnewVersion.mp3" autoplay loop></audio>
+
+    <div id="page1" class="container visible">
+        <img src="putri.jpeg" alt="Ucapan Selamat Ulang Tahun">
+        <h1>Selamat Ulang Tahun!</h1>
+        <p>Hari spesialmu sudah lewat, tapi doaku tetap sama. Semoga kebahagiaan selalu menyertaimu dan semua impianmu
+            segera tercapai. Selamat ulang tahun (meski terlambat)!</p>
+        <button onclick="toggleAudio()" id="audioControl">Jeda Lagu</button>
+        <button onclick="showPage2()">Klik untuk Lihat Pesan Spesial</button>
+    </div>
+
+    <div id="page2" class="container hidden">
+        <h1>Pesan Spesial untukmu</h1>
+        <p>Kamu adalah sahabat terbaik yang pernah ada, dan aku merasa beruntung memilikimu dalam hidupku. Aku berharap
+            semua impianmu tercapai dan hari-harimu selalu penuh kebahagiaan! Tetaplah menjadi dirimu yang luar biasa.
+            Semoga setiap langkahmu membawa kesuksesan dan kebahagiaan yang tak terhingga. Kamu spesial, dan aku selalu
+            mendukungmu! 🎉</p>
+        <a href="https://wa.me/?text=Hai%20pembuat%20terima%20kasih%20atas%20pesannya!" target="_blank">
+            <button>Beri Pesan kepada Pembuat</button>
+        </a>
+        <button onclick="showPage1()">Kembali ke halaman utama</button>
+    </div>
+
+    <script>
+        const audio = document.getElementById('birthdaySong');
+        const audioControlButton = document.getElementById('audioControl');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+                audioControlButton.textContent = 'Jeda Lagu';
+            } else {
+                audio.pause();
+                audioControlButton.textContent = 'Putar Lagu';
+            }
+        }
+
+        function showPage2() {
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+
+            page1.classList.remove('visible');
+            setTimeout(() => {
+                page1.classList.add('hidden');
+                page2.classList.remove('hidden');
+                page2.classList.add('visible');
+            }, 500);
+        }
+
+        function showPage1() {
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+
+            page2.classList.remove('visible');
+            setTimeout(() => {
+                page2.classList.add('hidden');
+                page1.classList.remove('hidden');
+                page1.classList.add('visible');
+            }, 500);
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+
+</html>
